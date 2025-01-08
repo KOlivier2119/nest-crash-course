@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, Req, Res, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, Req, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 
@@ -15,11 +15,11 @@ export class UsersController {
     @UsePipes(new ValidationPipe())
     createUser(@Body() userData: CreateUserDto) {
         console.log(userData.email)
-        return {};
+        return { userData };
     }
 
     @Get(':id')
-    getUserById(@Param('id') id: string) {
+    getUserById(@Param('id', ParseIntPipe) id: number) {
         console.log(id)
         return { id }
     }
