@@ -15,14 +15,12 @@ export class UsersController {
     @Post('create')
     @UsePipes(new ValidationPipe())
     createUser(@Body() userData: CreateUserDto) {
-        console.log(userData.email)
         this.userService.createUser(userData);
     }
 
     @Get(':id')
     getUserById(@Param('id', ParseIntPipe) id: number) {
-        console.log(id)
-        return { id }
+        return this.userService.fetchUserById(id);
     }
 }
 
