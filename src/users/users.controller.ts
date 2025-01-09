@@ -1,9 +1,11 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, Req, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { CreateUserDto } from './dtos/CreateUser.dto';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+    constructor(private userService: UsersService) {}
 
     @Get()
     getUsers(@Query('sortBy') sortBy: string) {
