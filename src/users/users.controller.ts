@@ -8,16 +8,15 @@ export class UsersController {
     constructor(private userService: UsersService) {}
 
     @Get()
-    getUsers(@Query('sortBy') sortBy: string) {
-        console.log(sortBy)
-        return [{ username: "Olivier", email: "kwizeraolivier@gmail.com" }]
+    getUsers() {
+        return this.userService.fetchUsers();
     }
 
     @Post('create')
     @UsePipes(new ValidationPipe())
     createUser(@Body() userData: CreateUserDto) {
         console.log(userData.email)
-        return { userData };
+        this.userService.createUser(userData);
     }
 
     @Get(':id')
