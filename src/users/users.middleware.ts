@@ -10,7 +10,7 @@ export class UsersMiddleware implements NestMiddleware {
 
       if(!authorization) throw new HttpException('No authorizations Token', HttpStatus.FORBIDDEN);
 
-      if (authorization == 'Olivier') next();
+      if (authorization == 'b2xpdmllcjoxMjM0') next();
       else throw new HttpException('Invalid authorization token', HttpStatus.FORBIDDEN)
   }
 }
